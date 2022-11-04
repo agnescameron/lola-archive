@@ -13,6 +13,13 @@ function App() {
 
   const [hasNextPage, setHasNextPage] = useState(true);
 
+  const shuffleArray = (array) => {
+      for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+  }
 
   const fetchmore = async (since) => {
     
@@ -29,7 +36,8 @@ function App() {
         }
     });
       const json = await response.json();
-      return setData((data) => [...data, ...json.records]);
+      const records = shuffleArray(json.records);
+      return setData((data) => [...data, ...records]);
     }
     catch(e) {
       console.log(e);
@@ -52,7 +60,7 @@ function App() {
 
   return (
     <div className="App">
-      <main className='main'>
+      <div className='main'>
         {
           (loading || hasNextPage) && 
           <div className="loader" ref={sentryRef}>
@@ -65,9 +73,9 @@ function App() {
               <p>{item && item.fields.Name }</p>
             </div>
           )
-        })}
+      })}
 
-      </main>
+      </div>
      
       <h2>List of github users</h2>
 
