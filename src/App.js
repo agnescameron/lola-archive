@@ -1,47 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
-
+import Table from './components/Table.js';
 import useInfiniteScroll from 'react-infinite-scroll-hook';
+
+const airtable_api_key = process.env.REACT_APP_AIRTABLE_API_KEY;
+const airtable_api_url = process.env.REACT_APP_AIRTABLE_API_URL;
+const airtable_table = process.env.REACT_APP_AIRTABLE_TABLE;
+const airtable_base = process.env.REACT_APP_AIRTABLE_BASE; 
 
 function App() {
   const [data, setData] = useState([]);
-
-  const [since, setSince] = useState(0);
-  const [limit, setLimit] = useState(10);
-
+  const [gridBlocks, setGridBlocks] = useState(9);
   const [loading, setLoading] = useState(false);
 
-  const [hasNextPage, setHasNextPage] = useState(true);
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
 
-  const shuffleArray = (array) => {
-      for (let i = array.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-  }
-
-  const fetchmore = async (since) => {
-    
-    setLoading(true)
-    setSince(since + limit);
+  const fetchArchive = async () => {
+    console.log('fetching')
     try {
       const response = await fetch( "https://api.airtable.com/v0/appuNtEsIgAYPiHf8/Text?view=Grid%20view", {
         method: 'GET',
         withCredentials: true,
         credentials: 'include',
         headers: {
-            'Authorization': "Bearer keyG3kULvc1nh0AtL",
+            'Authorization': "Bearer " + airtable_api_key,
             'Content-Type': 'application/json'
         }
     });
       const json = await response.json();
-      const records = shuffleArray(json.records);
-      return setData((data) => [...data, ...records]);
+      return setData(json.records);
     }
     catch(e) {
-      console.log(e);
-      return setHasNextPage(false);
+      console.log('error!', e);
     }
     finally {
      return  setLoading(false);
@@ -49,37 +45,23 @@ function App() {
     
   }
 
-  const [sentryRef] = useInfiniteScroll({
-    loading, 
-    hasNextPage: hasNextPage ,
-    delayInMs:1000,
-    onLoadMore: () => {
-      fetchmore(since);
-    }
-  })
+  useEffect(() => {
+    const { height, width } = getWindowDimensions();
+    window.scrollTo({
+      top: 6000-height/2,
+      left: 10000-width/2,
+    });
+
+    fetchArchive();
+  }, [])
 
   return (
     <div className="App">
-      <div className='main'>
-        {
-          (loading || hasNextPage) && 
-          <div className="loader" ref={sentryRef}>
-          <h1>...</h1>
-        </div>
-        }
-      {data && data.reverse().map((item, index) => {
-          return (
-            <div key={index} className='item'>
-              <p>{item && item.fields.Name }</p>
-            </div>
-          )
-      })}
-
+      <div className="grid-container">
+        { [...Array(gridBlocks)].map((e, i) => {
+          return <Table key={i} data={data} index={i}/>
+        })}
       </div>
-     
-      <h2>List of github users</h2>
-
-     
     </div>
   );
 }
