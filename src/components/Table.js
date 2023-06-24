@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import Item from './Item';
 
 function Table(props) {
 	const shuffleArray = (array) => {
@@ -11,13 +11,15 @@ function Table(props) {
  	 }
 
 	const data = shuffleArray(props.data)
+	// console.log('in table data is', data)
 	const blockid = "block" + props.index;
 
 	return(
 		<div className="grid-item" id={blockid}>
 			{
 				data.length > 0 && data.map((el, i) => {
-					return <div key={i}>{el.fields.Name}</div>
+					// return <div key={i}>{el.fields.Name}</div>
+						return <Item key={i} el={el.fields} />
 				})}
 		</div>
 	)
