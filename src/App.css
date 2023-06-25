@@ -1,12 +1,11 @@
 .grid-container {
-  height: 12000px;
-  width: 20000px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  height: 4000px;
+  width: 7000px;
+/*  display: grid;
+  grid-template-columns: repeat(3, 1fr);*/
 }
 
 .grid-item {
-
 }
 
 .item {

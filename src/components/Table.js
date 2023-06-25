@@ -11,7 +11,8 @@ function Table(props) {
  	 }
 
  	 const getPosition = (el) => {
- 	 	console.log('getting position')
+ 	 	// console.log('getting position')
+ 	 	return { top: props.offset.top + 10, left: props.offset.left + 10}
  	 }
 
 	const data = shuffleArray(props.data)
@@ -23,7 +24,7 @@ function Table(props) {
 			{
 				data.length > 0 && data.map((el, i) => {
 					// return <div key={i}>{el.fields.Name}</div>
-						return <Item key={i} el={el.fields} pos={ (el) => getPosition(el)} />
+						return <Item key={i} el={el.fields} pos={getPosition(el)} />
 				})}
 		</div>
 	)
