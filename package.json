@@ -8,10 +8,12 @@
     "@testing-library/user-event": "^13.5.0",
     "airtable": "^0.12.1",
     "dotenv": "^16.0.3",
+    "draggable": "^4.2.0",
     "eslint-plugin-cypress": "^2.12.1",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-draggable": "^4.4.5",
     "react-infinite-scroll-hook": "^4.0.2",
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.4"

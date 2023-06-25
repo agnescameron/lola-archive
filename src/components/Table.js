@@ -10,6 +10,10 @@ function Table(props) {
       return array;
  	 }
 
+ 	 const getPosition = (el) => {
+ 	 	console.log('getting position')
+ 	 }
+
 	const data = shuffleArray(props.data)
 	// console.log('in table data is', data)
 	const blockid = "block" + props.index;
@@ -19,7 +23,7 @@ function Table(props) {
 			{
 				data.length > 0 && data.map((el, i) => {
 					// return <div key={i}>{el.fields.Name}</div>
-						return <Item key={i} el={el.fields} />
+						return <Item key={i} el={el.fields} pos={ (el) => getPosition(el)} />
 				})}
 		</div>
 	)
