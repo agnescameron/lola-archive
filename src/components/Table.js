@@ -12,7 +12,7 @@ function Table(props) {
 
  	 const getPosition = (el) => {
  	 	// console.log('getting position')
- 	 	return { top: props.offset.top + (Math.random()-0.5)*Math.random()*1000, left: props.offset.left + 10 + (Math.random()-0.5)*Math.random()*1000 - 500}
+ 	 	return { top: props.offset.top + (Math.random()-0.5)*Math.random()*800, left: props.offset.left + (Math.random()-0.5)*Math.random()*1000 }
  	 }
 
 	const data = shuffleArray(props.data)

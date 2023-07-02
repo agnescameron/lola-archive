@@ -56,10 +56,10 @@ function getWindowDimensions() {
 
   useEffect(() => {
     const { height, width } = getWindowDimensions();
-    window.scrollTo({
-      top: 2000-height/2,
-      left: 3500-width/2,
-    });
+    // window.scrollTo({
+    //   top: 2000-height/2,
+    //   left: 3500-width/2,
+    // });
       base('Objects').select().all().then(records => {
           console.log(records);
           setData(records);
@@ -75,7 +75,7 @@ function getWindowDimensions() {
     <div className="App">
       <div className="grid-container">
 
-        <Table offset={{ left: 3500, top: 2000 }} data={data} />
+        <Table offset={{ left: window.innerWidth/2, top: window.innerHeight/2 }} data={data} />
       </div>
     </div>
   );
