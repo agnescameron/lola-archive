@@ -27,7 +27,7 @@ function Item(props) {
 	}
 
 	return(
-		<Draggable onDrag={dragHandler} onDragOver={ onOver } onDrop = { e => onDrop (e)}>
+		<Draggable onDrag={dragHandler} onDragOver={ onOver } onStop = { e => onDrop (e)} onMouseUp = { e => onDrop (e)} >
 			<div className="archive-item" style={{ left: props.pos.left, top: props.pos.top }} onClick={openHandler}>
 				{/*{ props.el.Name && <p>{props.el.Name}</p> }*/}
 				{ props.el["Media File"] && <img src={ props.el["Media File"][0].thumbnails[mediaSize].url } /> }

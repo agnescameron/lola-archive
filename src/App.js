@@ -12,7 +12,7 @@ const airtable_base = process.env.REACT_APP_AIRTABLE_BASE;
 function App() {
   const [data, setData] = useState([]);
   const [gridBlocks, setGridBlocks] = useState(9);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -29,42 +29,15 @@ function getWindowDimensions() {
 
   const base = Airtable.base(airtable_base);
 
-  const fetchArchive = async () => {
-    console.log('fetching', airtable_api_key)
-    try {
-      const response = await fetch( "https://api.airtable.com/v0/appuNtEsIgAYPiHf8/Objects", {
-        method: 'GET',
-        withCredentials: true,
-        credentials: 'include',
-        headers: {
-            'Authorization': "Bearer " + airtable_api_key,
-            'Content-Type': 'application/json'
-        }
-    });
-      const json = await response.json();
-      console.log(json.records)
-      return setData(json.records);
-    }
-    catch(e) {
-      console.log('error!', e);
-    }
-    finally {
-     return  setLoading(false);
-    }
-    
-  }
-
   useEffect(() => {
+    console.log(loading)
     const { height, width } = getWindowDimensions();
-    // window.scrollTo({
-    //   top: 2000-height/2,
-    //   left: 3500-width/2,
-    // });
       base('Objects').select().all().then(records => {
-          console.log(records);
           setData(records);
       })
-      .then(setLoading(false))
+      .then( () => {
+        setLoading(false)
+      })
       .catch(err => {
           console.error(err);
       });
@@ -74,8 +47,7 @@ function getWindowDimensions() {
   return (
     <div className="App">
       <div className="grid-container">
-
-        <Table offset={{ left: window.innerWidth/2, top: window.innerHeight/2 }} data={data} />
+        { loading ? <img src="/loading-gif.gif" id="loading"/> : <Table offset={{ left: window.innerWidth/2, top: window.innerHeight/2 }} data={data} /> }
       </div>
     </div>
   );
