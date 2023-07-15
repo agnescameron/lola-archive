@@ -1,12 +1,21 @@
 .archive-item {
 	position: absolute;
-	width: 60px;
+/*	width: 60px;*/
 }
 
 .archive-item:hover {
 	z-index: 10;
+	filter: drop-shadow(3px 3px 10px white);
 }
 
+
+.close {
+	float: right;
+}
+
+.close:hover {
+	background-color: yellow;
+}
 
 .archive-item > img {
 	width: 100%;
