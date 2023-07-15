@@ -27,11 +27,12 @@ function Item(props) {
 	}
 
 	return(
-		<Draggable onDrag={dragHandler} onDragOver={ onOver } onStop = { e => onDrop (e)} onMouseUp = { e => onDrop (e)} >
-			<div className="archive-item" style={{ left: props.pos.left, top: props.pos.top }} onClick={openHandler}>
-				{/*{ props.el.Name && <p>{props.el.Name}</p> }*/}
+		// onDrag={dragHandler} onDragOver={ onOver } onStop = { e => onDrop (e)} onMouseUp = { e => onDrop (e)}
+		<Draggable >
+			<div className={ mediaSize === "small" ? "archive-item" : "archive-item-large" } style={{ left: props.pos.left, top: props.pos.top }} onClick={openHandler}>
+				{ mediaSize === "large" && ( props.el.Name ? <p>{props.el.Name}</p> : <p>item name</p> ) }
 				{ props.el["Media File"] && <img src={ props.el["Media File"][0].thumbnails[mediaSize].url } /> }
-				{/*{ props.el.Description && <p>{props.el.Description}</p> }*/}
+				{ mediaSize === "large" && ( props.el.Description ? <p>{props.el.Description}</p> : <p>item description would go here </p> ) }
 			</div>
 		</Draggable>
 	)
