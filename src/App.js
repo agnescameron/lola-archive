@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Table from './components/Table.js';
 import useInfiniteScroll from 'react-infinite-scroll-hook';
+import { ParallaxProvider } from 'react-scroll-parallax';
+
 const Airtable = require('airtable');
 
 const airtable_api_key = process.env.REACT_APP_AIRTABLE_API_KEY;
@@ -46,9 +48,11 @@ function getWindowDimensions() {
 
   return (
     <div className="App">
+     <ParallaxProvider>
       <div className="grid-container">
         { loading ? <img src="/loading-gif.gif" id="loading"/> : <Table offset={{ left: window.innerWidth/2, top: window.innerHeight/2 }} data={data} /> }
       </div>
+      </ParallaxProvider>
     </div>
   );
 }

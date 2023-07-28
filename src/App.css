@@ -1,6 +1,6 @@
 .grid-container {
-  height: 100vh;
-  width: 100vw;
+  height: 200vh;
+  width: 200vw;
 /*  display: grid;
   grid-template-columns: repeat(3, 1fr);*/
 }
@@ -9,8 +9,8 @@
 }
 
 #loading {
-  left: calc(50vw - 100px);
-  top: calc(50vh - 100px);
+  left: calc(100vw - 100px);
+  top: calc(100vh - 100px);
   position: absolute;
   width: 200px;
 }

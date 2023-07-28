@@ -1,7 +1,17 @@
 import { useState, useEffect } from 'react';
 import Item from './Item';
+import { Parallax } from 'react-scroll-parallax';
+
 
 function Table(props) {
+	const [layers, setLayers] = useState({});
+
+	const layerMap = {
+		top: 0,
+		middle: -10,
+		bottom: -20
+	}
+
 	const shuffleArray = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -9,6 +19,25 @@ function Table(props) {
       }
       return array;
  	 }
+
+		const groupBy = (arr, key) => {
+		  return arr.reduce((rv, x) => {
+		    (rv[x[key]] = rv[x[key]] || []).push(x);
+		    return rv;
+		  }, {});
+		};
+
+ 	 useEffect(() => {
+ 	 		let tempData = []
+
+ 	 		props.data.forEach((el) => tempData.push(el.fields))
+ 	 		const sorted = groupBy(tempData, 'Layer');
+ 	 		delete sorted[undefined]
+
+ 	 		console.log(sorted)
+
+ 	 		setLayers(sorted);
+ 	 }, [props])
 
  	 const getPosition = (el) => {
  	 	// console.log('getting position')
@@ -21,11 +50,16 @@ function Table(props) {
 
 	return(
 		<div className="grid-item" id={blockid}>
-			{
-				data.length > 0 && data.map((el, i) => {
-					// return <div key={i}>{el.fields.Name}</div>
-						return <Item key={i} el={el.fields} pos={getPosition(el)} />
-				})}
+			{ Object.entries(layers).map(([key, data]) => 
+				<Parallax speed={layerMap[key]}>
+				{
+					data.map((el, i) => {
+							// return <div key={i}>{el.fields.Name}</div>
+								return <Item key={i} el={el} pos={getPosition(el)} />
+						})
+					}
+				</Parallax>
+			)}
 		</div>
 	)
 }
