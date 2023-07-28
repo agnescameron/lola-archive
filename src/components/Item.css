@@ -23,12 +23,16 @@
 
 .archive-item-large {
 	position: absolute;
-	z-index: 10;
+	z-index: 100;
 	border: 2px solid red;
 	padding: 5px;
 	background-color: rgba(255, 255, 255, 0.7);
+	width: 500px;
 }
 
+.archive-item-large > img {
+	width: 100%;
+}
 
 /*img {
 	width: 100px;
