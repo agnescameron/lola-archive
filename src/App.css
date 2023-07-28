@@ -1,8 +1,31 @@
 .grid-container {
-  height: 120vh;
+  height: 180vh;
   width: 120vw;
 /*  display: grid;
   grid-template-columns: repeat(3, 1fr);*/
+}
+
+.transcript-box {
+  width: 100vw;
+  height: 100vh;
+/*  left: 400px;
+  top: 400px;*/
+  position: absolute;
+  background-color: coral;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.transcript-box p {
+  font-size: 5em;
+    filter: drop-shadow(10px 10px 20px white);
+}
+
+.title {
+/*  float: right;*/
+  position: fixed;
+  left: 70vw;
+  filter: drop-shadow(5px 5px 10px white);
 }
 
 .grid-item {
