@@ -7,9 +7,9 @@ function Table(props) {
 	const [layers, setLayers] = useState({});
 
 	const layerMap = {
-		top: 0,
-		middle: -10,
-		bottom: -20
+		top: 5,
+		middle: -5,
+		bottom: -15
 	}
 
 	const shuffleArray = (array) => {
@@ -41,7 +41,7 @@ function Table(props) {
 
  	 const getPosition = (el) => {
  	 	// console.log('getting position')
- 	 	return { top: props.offset.top + (Math.random()-0.5)*Math.random()*700 -50, left: props.offset.left + (Math.random()-0.5)*Math.random()*1000 }
+ 	 	return { top: props.offset.top + (Math.random()-0.5)*Math.random()*700 -30, left: props.offset.left + (Math.random()-0.5)*Math.random()*1000 }
  	 }
 
 	const data = shuffleArray(props.data)
