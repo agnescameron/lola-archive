@@ -22,21 +22,21 @@
 }
 
 .archive-item-large {
+	color: black;
 	position: absolute;
 	z-index: 100;
-	border: 2px solid red;
+/*	border: 2px solid red;*/
 	padding: 5px;
 	background-color: rgba(255, 255, 255, 0.7);
 	width: 500px;
+	filter: drop-shadow(3px 3px 10px white);
 }
 
 .archive-item-large > img {
 	width: 100%;
 }
 
-body {
-	background-color: #99cc00;
-}
+
 
 /*img {
 	width: 100px;

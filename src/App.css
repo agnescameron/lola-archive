@@ -6,19 +6,30 @@
 }
 
 .transcript-box {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 /*  left: 400px;
   top: 400px;*/
   position: absolute;
   background-color: coral;
-  opacity: 0.4;
+/*  opacity: 0.4;*/
+/*  background-color: rgba(255, 153, 102, 0.3);
+  box-shadow:  0 0 30px 30px rgba(255, 153, 102, 0.3);*/
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow:  0 0 100px 100px rgba(255, 255, 255, 0.3);
   pointer-events: none;
+  border: none;
 }
 
 .transcript-box p {
-  font-size: 5em;
+  font-size: 3em;
     filter: drop-shadow(10px 10px 20px white);
+    width: 70vw;
+/*    display: none;*/
+}
+
+.transcript-box:hover p {
+  display: block;
 }
 
 .title {
@@ -73,4 +84,9 @@
 }
 #block8 {
   background-color: thistle;
+}
+
+body {
+  background-color: black;
+  color: white;
 }
