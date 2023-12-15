@@ -9,6 +9,10 @@
 
 }
 
+.display-linebreak {
+  white-space: pre-line;
+}
+
 .item {
   display: flex;
   width: 300px;

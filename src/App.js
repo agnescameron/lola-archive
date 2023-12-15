@@ -34,7 +34,7 @@ function getWindowDimensions() {
         }
     });
       const json = await response.json();
-      return setData(json.records);
+      return setData(json.records.concat(json.records).concat(json.records).concat(json.records));
     }
     catch(e) {
       console.log('error!', e);
