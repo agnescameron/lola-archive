@@ -1,13 +1,23 @@
 .archive-item {
 	position: absolute;
-/*	width: 60px;*/
+	width: 100px;
+	transition: margin 1s;
 }
 
 .archive-item:hover {
 	z-index: 10;
 	filter: drop-shadow(3px 3px 10px white);
+	margin: 10px -10px 0px 0px;
 }
 
+.archive-item span {
+	position: absolute;
+/*	z-index: 3;*/
+	top: 20px;
+	left: 10px;
+	z-index: 100;
+/*	color: yellow;*/
+}
 
 .close {
 	float: right;
@@ -15,6 +25,10 @@
 
 .close:hover {
 	background-color: yellow;
+}
+
+.archive-item > img {
+	width: 100%;
 }
 
 .archive-item > img {

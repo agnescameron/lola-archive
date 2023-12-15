@@ -17,13 +17,37 @@ function App() {
   const [gridBlocks, setGridBlocks] = useState(9);
   const [loading, setLoading] = useState(true);
 
+  let records = []
+
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
     height
   };
+} 
+
+const processPage = (partialRecords, fetchNextPage) => {
+    // console.log('data length is', records.length, 'partial length is', partialRecords.length)
+    loading && setLoading(false) 
+    records = [...records, ...partialRecords]
+    // console.log('records is now', records)
+    setData(records)
+    // window.setTimeout(() => fetchNextPage(), 1000)
+    fetchNextPage()
+  }
+  // called when all the records have been retrieved
+  const processRecords = (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    else {
+      console.log("done")
+          setData(records)
 }
+  }
+
 
   Airtable.configure({
       endpointUrl: 'https://api.airtable.com',
@@ -35,23 +59,17 @@ function getWindowDimensions() {
   useEffect(() => {
     console.log(loading)
     const { height, width } = getWindowDimensions();
-      base('Objects').select().all().then(records => {
-          setData(records);
-      })
-      .then( () => {
-        setLoading(false)
-      })
-      .catch(err => {
-          console.error(err);
-      });
-
+      base('Objects').select({
+        pageSize: 50,
+      }).eachPage(processPage, processRecords)
+     window.scrollTo(width, height/2)
   }, [])
 
   return (
     <div className="App">
      <ParallaxProvider>
-      <div className="grid-container">
-        { loading ? <img src="/loading-gif.gif" id="loading"/> : <Table offset={{ left: window.innerWidth/2, top: window.innerHeight/2 }} data={data} /> }
+      <div className="grid-container" id="grid-container">
+        { loading ? <img src="/loading-gif.gif" id="loading"/> : <Table offset={{ left: 3*window.innerWidth/2, top: window.innerHeight/2 }} data={data} /> }
       </div>
       </ParallaxProvider>
     </div>

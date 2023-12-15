@@ -7,9 +7,9 @@ function Table(props) {
 	const [layers, setLayers] = useState({});
 
 	const layerMap = {
-		top: -5,
-		middle: -50,
-		bottom: -100
+		top: -10,
+		middle: -20,
+		bottom: -30
 	}
 
 	const shuffleArray = (array) => {
@@ -41,7 +41,7 @@ function Table(props) {
 
  	 const getPosition = (el) => {
  	 	// console.log('getting position')
- 	 	return { top: props.offset.top + (Math.random()-0.5)*Math.random()*700 -30, left: props.offset.left + (Math.random()-0.5)*Math.random()*1000 -200 }
+ 	 	return { top: props.offset.top + (Math.random()-0.5)*Math.random()*700 -30, left: props.offset.left + (Math.random()-0.5)*Math.random()*1000 }
  	 }
 
 	const data = shuffleArray(props.data)
@@ -52,7 +52,7 @@ function Table(props) {
 		<div className="grid-item" id={blockid}>
 		<h1 className="title">THIS IS A TEMPORAL LANDSCAPE,<br/> YOU WILL FIND NO DIRECTION HERE</h1>
 		
-				<Parallax speed={5}>
+				<Parallax speed={0}>
 					<div className="transcript-box">
 						<p>HEGEMONIC CLOCK TIME CAUSES ↝  SUPPRESSED IMAGINATIONS↝ TOPOLOGICAL FRAME (RETHINKING TEMPORALITY) ↝ DEFEATS/CHALLENGES HEGEMONIC CLOCK TIME (CLEARS A SPACE FOR) ↝ IMAGINATIVE REVOLUTIONARY POTENTIAL STORED IN CULTURAL PRODUCTS TO EMERGE ↝ HELPS DEAL WITH THE PROBLEM OF SUPPRESSED IMAGINATIONS VIA NEW THE CREATION AFFECTIVE LANDSCAPES THAT SHORE UP POLITICAL DESIRE</p>
 					</div>

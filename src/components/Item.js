@@ -4,6 +4,7 @@ import Draggable, {DraggableCore} from 'react-draggable';
 
 function Item(props) {
 	const [ mediaSize, setMediaSize ] = useState("small")
+	const [ showTitle, setShowTitle ] = useState(false)
 	//props.el["Media File"] ? React.useState() : React.useState("")
 
 	const dragHandler = (e, data) => {
@@ -12,6 +13,7 @@ function Item(props) {
 
 	const openHandler = (e) => {
 		setMediaSize("large")
+		console.log('showtitle is', showTitle)
 	}
 
 	const closeHandler = (e) => {
@@ -31,13 +33,24 @@ function Item(props) {
 		console.log('drop')
 	}
 
+	const mouseEnter = (e) => {
+		setShowTitle(true)
+		console.log('mouse enter')
+	}
+
+	const mouseLeave = (e) => {
+		setShowTitle(false)
+		console.log('mouse leave')
+	}
+
 	return(
 		// onDrag={dragHandler} onDragOver={ onOver } onStop = { e => onDrop (e)} onMouseUp = { e => onDrop (e)}
 		<Draggable >
 
 			{ mediaSize === "small" ? (
-				<div className="archive-item" style={{ left: props.pos.left, top: props.pos.top }} onClick={openHandler}>
-					{ props.el["Media File"] && <img src={ props.el["Media File"][0].thumbnails['small'].url } /> }
+				<div className="archive-item" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={{ left: props.pos.left, top: props.pos.top }} onClick={openHandler}>
+					{ props.el["Media File"] && <img src={ props.el["Media File"][0].thumbnails['large'].url } /> }
+					{ showTitle && <span>{ props.el.Name ? props.el.Name : "item name" }</span> }
 				</div>
 				) : (
 
