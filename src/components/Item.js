@@ -35,12 +35,10 @@ function Item(props) {
 
 	const mouseEnter = (e) => {
 		setShowTitle(true)
-		console.log('mouse enter')
 	}
 
 	const mouseLeave = (e) => {
 		setShowTitle(false)
-		console.log('mouse leave')
 	}
 
 	return(

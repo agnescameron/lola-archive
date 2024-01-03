@@ -34,18 +34,14 @@ function Table(props) {
  	 		const sorted = groupBy(tempData, 'Layer');
  	 		delete sorted[undefined]
 
- 	 		console.log(sorted)
-
  	 		setLayers(sorted);
  	 }, [props])
 
  	 const getPosition = (el) => {
- 	 	// console.log('getting position')
  	 	return { top: props.offset.top + (Math.random()-0.5)*Math.random()*window.innerHeight -30, left: props.offset.left + (Math.random()-0.5)*Math.random()*window.innerWidth }
  	 }
 
 	const data = shuffleArray(props.data)
-	// console.log('in table data is', data)
 	const blockid = "block" + props.index;
 
 	return(
@@ -76,10 +72,3 @@ function Table(props) {
 }
 
 export default Table;
-
-
-// HEGEMONIC CLOCK TIME CAUSES ↝  SUPPRESSED IMAGINATIONS↝ TOPOLOGICAL FRAME (RETHINKING TEMPORALITY) ↝ DEFEATS/CHALLENGES HEGEMONIC CLOCK TIME (CLEARS A SPACE FOR) ↝ IMAGINATIVE REVOLUTIONARY POTENTIAL STORED IN CULTURAL PRODUCTS TO EMERGE ↝ HELPS DEAL WITH THE PROBLEM OF SUPPRESSED IMAGINATIONS VIA NEW THE CREATION AFFECTIVE LANDSCAPES THAT SHORE UP POLITICAL DESIRE
-			// 	<Parallax speed={layerMap[key]-2}>
-			// 		<div className="transcript-box">
-			// </div>
-			// 	</Parallax>

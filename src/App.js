@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
 import Home from './Home.js';
+import InfoPage from './components/InfoPage.js';
 
 const Airtable = require('airtable');
 
@@ -32,8 +34,8 @@ const processPage = (partialRecords, fetchNextPage) => {
       return
     }
     else {
-      console.log("done")
-        setData(records)
+      console.log("done", records.filter(record => record.fields.Name))
+      setData(records)
 }
   }
 
@@ -53,7 +55,12 @@ const processPage = (partialRecords, fetchNextPage) => {
 
   return (
     <div className="App">
-      <Home data={data} loading={loading} />
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home data={data} loading={loading} /> } />
+          <Route path="/:id"element={<InfoPage data={data} loading={loading} />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
