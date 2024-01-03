@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './App.css';
 import Home from './Home.js';
 import InfoPage from './components/InfoPage.js';
+import Transcript from './components/Transcript.js';
 
 const Airtable = require('airtable');
 
@@ -58,6 +59,7 @@ const processPage = (partialRecords, fetchNextPage) => {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home data={data} loading={loading} /> } />
+          <Route exact path="/keller" element={<Transcript /> } />
           <Route path="/:id"element={<InfoPage data={data} loading={loading} />} />
         </Routes>
       </Router>
