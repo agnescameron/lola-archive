@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Table from './components/Table.js';
-import useInfiniteScroll from 'react-infinite-scroll-hook';
-import { ParallaxProvider } from 'react-scroll-parallax';
-
+import Home from './Home.js';
 
 const Airtable = require('airtable');
 
@@ -18,14 +15,6 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   let records = []
-
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height
-  };
-} 
 
 const processPage = (partialRecords, fetchNextPage) => {
     // console.log('data length is', records.length, 'partial length is', partialRecords.length)
@@ -44,7 +33,7 @@ const processPage = (partialRecords, fetchNextPage) => {
     }
     else {
       console.log("done")
-          setData(records)
+        setData(records)
 }
   }
 
@@ -57,21 +46,14 @@ const processPage = (partialRecords, fetchNextPage) => {
   const base = Airtable.base(airtable_base);
 
   useEffect(() => {
-    console.log(loading)
-    const { height, width } = getWindowDimensions();
       base('Objects').select({
         pageSize: 50,
       }).eachPage(processPage, processRecords)
-     window.scrollTo(width/4, height/2)
   }, [])
 
   return (
     <div className="App">
-     <ParallaxProvider>
-      <div className="grid-container" id="grid-container">
-        { loading ? <img src="/loading-gif.gif" id="loading"/> : <Table offset={{ left: 3*window.innerWidth/4, top: window.innerHeight/2 }} data={data} /> }
-      </div>
-      </ParallaxProvider>
+      <Home data={data} loading={loading} />
     </div>
   );
 }
