@@ -62,14 +62,14 @@ const processPage = (partialRecords, fetchNextPage) => {
       base('Objects').select({
         pageSize: 50,
       }).eachPage(processPage, processRecords)
-     window.scrollTo(width, height/2)
+     window.scrollTo(width/4, height/2)
   }, [])
 
   return (
     <div className="App">
      <ParallaxProvider>
       <div className="grid-container" id="grid-container">
-        { loading ? <img src="/loading-gif.gif" id="loading"/> : <Table offset={{ left: 3*window.innerWidth/2, top: window.innerHeight/2 }} data={data} /> }
+        { loading ? <img src="/loading-gif.gif" id="loading"/> : <Table offset={{ left: 3*window.innerWidth/4, top: window.innerHeight/2 }} data={data} /> }
       </div>
       </ParallaxProvider>
     </div>

@@ -1,12 +1,14 @@
 .grid-container {
   height: 300vh;
-  width: 300vw;
+  width: 150vw;
 /*  display: grid;
   grid-template-columns: repeat(3, 1fr);*/
 }
 
 .transcript-box {
   width: 100%;
+  top: 150vh;
+  padding: 30px;
   height: 100vh;
 /*  left: 400px;
   top: 400px;*/
@@ -39,6 +41,12 @@
   filter: drop-shadow(5px 5px 10px white);
 }
 
+.about {
+  position: fixed;
+  left: 2vw;
+  top: 90vh;
+}
+
 .grid-item {
 }
 
@@ -58,7 +66,7 @@
   border-bottom: 2px solid #eaeaea;
 }
 
-#block0 {
+/*#block0 {
   background-color: coral;
 }
 #block1 {
@@ -84,7 +92,7 @@
 }
 #block8 {
   background-color: thistle;
-}
+}*/
 
 body {
   background-color: black;

@@ -41,7 +41,7 @@ function Table(props) {
 
  	 const getPosition = (el) => {
  	 	// console.log('getting position')
- 	 	return { top: props.offset.top + (Math.random()-0.5)*Math.random()*700 -30, left: props.offset.left + (Math.random()-0.5)*Math.random()*1000 }
+ 	 	return { top: props.offset.top + (Math.random()-0.5)*Math.random()*window.innerHeight -30, left: props.offset.left + (Math.random()-0.5)*Math.random()*window.innerWidth }
  	 }
 
 	const data = shuffleArray(props.data)
@@ -68,6 +68,7 @@ function Table(props) {
 					}
 				</Parallax>
 
+				<h1 className="about">?</h1>
 				</>
 			)}
 		</div>
