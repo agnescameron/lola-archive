@@ -59,7 +59,7 @@ const processPage = (partialRecords, fetchNextPage) => {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home data={data} loading={loading} /> } />
-          <Route exact path="/keller" element={<Transcript /> } />
+          <Route exact path="/transcripts/:name" element={<Transcript /> } />
           <Route path="/:id"element={<InfoPage data={data} loading={loading} />} />
         </Routes>
       </Router>

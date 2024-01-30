@@ -44,7 +44,7 @@ function Item(props) {
 	return(
 		// onDrag={dragHandler} onDragOver={ onOver } onStop = { e => onDrop (e)} onMouseUp = { e => onDrop (e)}
 		<Draggable >
-
+		
 			{ mediaSize === "small" ? (
 				<div className="archive-item" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={{ left: props.pos.left, top: props.pos.top }} onClick={openHandler}>
 					{ props.el["Media File"] && <img src={ props.el["Media File"][0].thumbnails['large'].url } /> }
@@ -53,10 +53,12 @@ function Item(props) {
 				) : (
 
 			<div className="archive-item-large" style={{ left: props.pos.left, top: props.pos.top }}>
-				{ props.el.Name ? <span onClick={closeHandler}>{props.el.Name}</span> : <span>item name</span> } 
-				<span className="close" onClick={closeHandler}>x</span><br/>
-				{ props.el["Media File"] && <img src={ props.el["Media File"][0].thumbnails['full'].url } /> }
-				{ props.el.Description ? <p>{props.el.Description}</p> : <p>item description would go here </p> }
+					{ props.el["Media File"] && <img src={ props.el["Media File"][0].thumbnails['full'].url } /> }
+					<div>
+					{ props.el.Name ? <span onClick={closeHandler}>{props.el.Name}</span> : <span>item name</span> } 
+					<span className="close" onClick={closeHandler}>x</span><br/>
+					{ props.el.Description ? <p>{props.el.Description}</p> : <p>item description would go here </p> }
+				</div>
 			</div>
 			)}
 

@@ -1,6 +1,6 @@
 .grid-container {
-  height: 300vh;
-  width: 150vw;
+  height: 1000vh;
+  width: 700vw;
 /*  display: grid;
   grid-template-columns: repeat(3, 1fr);*/
 }

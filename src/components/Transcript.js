@@ -1,8 +1,15 @@
 import ReactMarkdown from 'react-markdown';
 import { useState, useEffect } from 'react';
+import { useParams, Link } from "react-router-dom";
+
+import './Transcript.css'
 
 function Transcript(props) {
-	const [text, setText] = useState('loading..')
+	const [text, setText] = useState('loading...')
+
+	let params = useParams();
+	const { id } = params ? params : 1;
+	console.log('id is', id)
 
 	useEffect( () => {
 		console.log('fetching')

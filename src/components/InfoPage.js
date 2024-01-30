@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
 import { useParams, Link } from "react-router-dom";
 
+import "./Item.css"
+
 function InfoPage(props){
 	const [item, setItem] = useState(null)
 	const [press, setPress] = useState([])
@@ -22,7 +24,10 @@ function InfoPage(props){
 	 		<div>
 
 	 			{ item && 
-	 				<div> {item.fields.Name} </div>
+	 				<div>
+	 					{item.fields.Name}
+	 					<img className="info-image" src={item.fields["Media File"][0].url}/>
+	 				</div>
 	 			}
 	 		</div>
 			}
